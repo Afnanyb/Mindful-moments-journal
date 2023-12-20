@@ -14,8 +14,6 @@ The target audience includes individuals seeking a mental health tool for self-r
 
 ### Features
 
-Features
-
 1. Journal Entries:
    Write and Express:
    As a user, I want to be able to write daily journal entries to express my thoughts and emotions so that I can engage in regular self-reflection and emotional expression.
@@ -36,12 +34,12 @@ Features
 
 ### Tech Stack
 
-Frontend: React.js,
+Frontend: React.js
 Backend: Node.js with Express
-Database: MySQL
-Authentication: JSON Web Tokens (JWT)
-Styling: scss
-External Libraries: Axios for API requests, React for FE, Passport.js for authentication
+Database: MySQL with Knex.js
+Authentication: JSON Web Tokens (JWT) with Passport.js
+Styling: Sass
+External Libraries: Axios for API
 
 ### APIs
 
@@ -49,7 +47,7 @@ TBD
 
 ### Sitemap
 
-Home
+Home page
 Journal Entries
 Goals
 Community Insights - Nice to have
@@ -63,6 +61,8 @@ Resources - Nice to have
    username, email, password
 2. Journal Entries
    date, content, mood
+3. Goals
+   description, status
 
 ### Endpoints
 

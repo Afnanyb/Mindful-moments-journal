@@ -18,7 +18,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <box>
       <h1 className="header__sign">Sign In</h1>
       <label>Name</label>
       <input
@@ -41,7 +41,7 @@ function Home() {
       >
         Sign in{" "}
       </button>
-    </div>
+    </box>
   );
 }
 function App() {

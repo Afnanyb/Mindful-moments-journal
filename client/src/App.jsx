@@ -1,61 +1,53 @@
-import {
-  useNavigate,
-  Link,
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
-import { useState } from "react";
-// import Navbar from './components/Navbar';
+
 import JournalEntry from "./Component/JournalEntry";
+import Home from "./Component/Home/Home";
+import { useState } from "react";
 
-// import MoodTracker from './components/MoodTracker';
-// import GoalSetting from './components/GoalSetting';
-function Home() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
+// import GoalSetting from "./components/GoalSetting";
+function Goals() {
+  const [goal, setGoal] = useState("");
+  const [goals, setGoals] = useState([]);
+  function addGoal() {
+    setGoals((s) => [...s, goal]);
+    setGoal("");
+  }
   return (
-    <box>
-      <h1 className="header__sign">Sign In</h1>
-      <label>Name</label>
+    <>
+      <h1>Set your goal for the next week!</h1>
       <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder=""
+        placeholder="Type your goal here "
+        value={goal}
+        onChange={(e) => setGoal(e.target.value)}
       />
-      <label>Password</label>
-      <input
-        value={password}
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder=""
-      />
-      <button
-        onClick={() => {
-          // TODO:handel sign in
-          navigate("/journal-entry");
-        }}
-      >
-        Sign in{" "}
-      </button>
-    </box>
+      <button onClick={addGoal}>+</button>
+      {goals.map((goal) => (
+        <div className="goal__row" key={goal}>
+          <input type="checkbox" />
+          <label> {goal} </label>
+          <button onClick={() => setGoals((s) => s.filter((x) => x !== goal))}>
+            X
+          </button>
+        </div>
+      ))}
+    </>
   );
 }
+
 function App() {
   return (
     <Router>
-      <div>
+      <nav>
         <Link to="/">Home </Link>
         <Link to="/journal-entry">Journal Entry </Link>
         <Link to="/goals"> Goals </Link>
-      </div>
+      </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/journal-entry" element={<JournalEntry />} />
-        <Route path="/goals" element={<div> Goals</div>} />
+        <Route path="/goals" element={<Goals />} />
       </Routes>
     </Router>
   );

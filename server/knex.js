@@ -3,7 +3,7 @@ module.exports = {
     client: "mysql",
     connection: {
       host: "localhost",
-      user: "",
+      user: "root",
       password: "rootroot",
       database: "journal_db",
       charset: "utf8",

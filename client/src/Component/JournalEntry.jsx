@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./JournalEntry.scss";
 
-const moods = ["Sad", "Happy", "Frustrated", "Content", "Calm"]; // Fixed typo in "Content"
+const moods = ["Sad", "Happy", "Frustrated", "Content", "Calm"];
 
 function JournalEntry() {
   const [entryText, setEntryText] = useState("");
@@ -10,42 +10,42 @@ function JournalEntry() {
   const handleInputChange = (e) => {
     setEntryText(e.target.value);
   };
-  const handleMoodClick = (selectedMood) => {
-    setSelectedMood(selectedMood);
+
+  const handleMoodChange = (e) => {
+    setSelectedMood(e.target.value);
   };
+
   const handleEntryClick = () => {
     // TODO: send journal entry and mood to server
-    // based on http respose code choose behaviour refresh with conf or apology
   };
 
   return (
     <>
-      <div>
+      <div className="container">
         <div className="journal__mood">How are you feeling today?</div>
-        <div className="mood-options">
+        <select
+          className="mood-dropdown"
+          value={selectedMood || ""}
+          onChange={handleMoodChange}
+        >
+          <option value="" disabled>
+            Select your mood
+          </option>
           {moods.map((mood) => (
-            <div
-              key={mood}
-              className={`mood-option ${
-                selectedMood === mood ? "selected" : ""
-              }`}
-              onClick={() => handleMoodClick(mood)}
-            >
+            <option key={mood} value={mood}>
               {mood}
-            </div>
+            </option>
           ))}
-        </div>
+        </select>
       </div>
 
-      <div>
-        <textarea
-          value={entryText}
-          onChange={handleInputChange}
-          placeholder="Write your thoughts here..."
-          maxLength={1000}
-        />
-        <button onClick={() => handleEntryClick()}>Save Entry</button>
-      </div>
+      <textarea
+        value={entryText}
+        onChange={handleInputChange}
+        placeholder="Write your thoughts here..."
+        maxLength={1000}
+      />
+      <button onClick={() => handleEntryClick()}>Save Entry</button>
     </>
   );
 }

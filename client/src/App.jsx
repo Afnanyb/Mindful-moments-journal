@@ -39,7 +39,7 @@ function App() {
   return (
     <Router>
       <nav>
-        <Link to="/">Home </Link>
+        <Link to="/">Home</Link>
         <Link to="/journal-entry">Journal Entry </Link>
         <Link to="/goals"> Goals </Link>
       </nav>

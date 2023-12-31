@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-image: URL("../../assets/background-image.jpeg");
+  background-image: url("../../assets/background-image.jpeg");
   background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +12,7 @@ body {
 }
 
 .container {
-  background-color: white;
+  // background-color: white;
   border-radius: 8px;
   box-shadow: 0 0 10px lightgrey (0, 0, 0, 0.1);
   padding: 20px;
@@ -30,7 +29,7 @@ body {
 label {
   display: block;
   margin-bottom: 5px;
-  color: #555;
+  color: #007aff;
 }
 
 input {

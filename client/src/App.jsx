@@ -1,7 +1,7 @@
 import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
 
-import JournalEntry from "./Component/JournalEntry";
+import JournalEntry from "./Component/JournalEntry/JournalEntry";
 import Home from "./Component/Home/Home";
 import { useState } from "react";
 

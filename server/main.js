@@ -1,7 +1,8 @@
-import express from "express";
+import express, { request } from "express";
 import cors from "cors";
 import knex from "knex";
 import knexfile from "./knexfile.js";
+import bcrypt from "bcrypt";
 const db = knex(knexfile);
 const app = express();
 
@@ -12,6 +13,14 @@ app.get("/", (request, response) => {
 });
 app.post("/journalentry", (request, response) => {});
 
+app.post("/sign-up", async (request, response) => {
+  await db("users").insert({
+    name: request.body.name,
+    password: await bcrypt.hash(request.body.password, 10),
+  });
+
+  response.send("user inserted");
+});
 app.listen(8080, () => {
-  console.log("listning to ejhdjk");
+  console.log("listning on port 8080");
 });

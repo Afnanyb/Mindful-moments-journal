@@ -1,0 +1,83 @@
+.goals-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.goals-title {
+  font-size: 30px;
+  font-weight: 400;
+  color: #7fa2a7;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.goal-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-goal-btn {
+  background-color: #7fa2a7;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f1bda5;
+  }
+}
+
+.goal-row {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.goal-checkbox {
+  margin-right: 10px;
+  width: 1rem;
+}
+
+.goal-label {
+  flex-grow: 1;
+  font-size: 16px;
+  width: 100%;
+  margin-left: 1rem;
+  justify-items: center;
+}
+
+.remove-goal-btn {
+  background-color: #f1bda5;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #d22d00;
+  }
+}

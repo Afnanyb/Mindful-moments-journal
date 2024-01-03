@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./JournalEntry.scss";
+import { useState } from "react";
 
 const moods = ["Sad", "Happy", "Frustrated", "Content", "Calm"];
 
 function JournalEntry() {
   const [entryText, setEntryText] = useState("");
-  const [selectedMood, setSelectedMood] = useState(null);
+  const [selectedMood, setSelectedMood] = useState("");
 
   const handleInputChange = (e) => {
     setEntryText(e.target.value);
@@ -20,12 +21,12 @@ function JournalEntry() {
   };
 
   return (
-    <>
-      <div className="container">
-        <div className="journal__mood">How are you feeling today?</div>
+    <div className="journal__container">
+      <div className="journal__mood">
+        <div className="journal__mood--header">How are you feeling today?</div>
         <select
           className="mood-dropdown"
-          value={selectedMood || ""}
+          value={selectedMood}
           onChange={handleMoodChange}
         >
           <option value="" disabled>
@@ -38,15 +39,14 @@ function JournalEntry() {
           ))}
         </select>
       </div>
-
       <textarea
         value={entryText}
         onChange={handleInputChange}
         placeholder="Write your thoughts here..."
         maxLength={1000}
       />
-      <button onClick={() => handleEntryClick()}>Save Entry</button>
-    </>
+      <button onClick={handleEntryClick}>Save Entry</button>
+    </div>
   );
 }
 

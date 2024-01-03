@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Avenir";
+  src: url("./assets/Font/AvenirNextLTPro-Regular.woff2") format("woff2"),
+    url("./assets/Font/AvenirNextLTPro-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("./assets/Font/AvenirNextLTPro-Bold.woff2") format("woff2"),
+    url("./assets/Font/AvenirNextLTPro-Bold.woff") format("woff");
+
+  font-weight: 700;
+}
+
+body {
+  font-family: "Avenir";
+}

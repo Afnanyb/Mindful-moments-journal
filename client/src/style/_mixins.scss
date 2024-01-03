@@ -1,0 +1,16 @@
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+//Breakpoints
+$mobile-breakpoint: 20rem;
+$tablet-breakpoint: 48rem;
+$desktop-breakpoint: 80rem;

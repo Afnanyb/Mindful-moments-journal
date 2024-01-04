@@ -4,7 +4,9 @@ import { useState } from "react";
 
 function Home() {
   const [name, setName] = useState("");
+  const [signupName, setSignuptName] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
   return (
     <div className="container">
@@ -12,8 +14,8 @@ function Home() {
         <h1 className="container__header">Sign Up</h1>
         <label>Name</label>
         <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={signupName}
+          onChange={(e) => setSignuptName(e.target.value)}
           placeholder="write your name..."
         />
         <label>Password</label>
@@ -33,7 +35,7 @@ function Home() {
         <button
           onClick={() => {
             // TODO:handel sign in
-            navigate("/journal-entry");
+            // navigate("/journal-entry");
           }}
         >
           Sign Up

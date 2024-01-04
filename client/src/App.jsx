@@ -13,7 +13,7 @@ function App() {
         <a className="logo">MINDFUL</a>
         <div className="nav__items">
           <Link to="/">Home</Link>
-          <Link to="/journal-entry">Journal Entry</Link>
+          <Link to="/journal-entry">Journal </Link>
           <Link to="/goals">Goals</Link>
         </div>
       </nav>

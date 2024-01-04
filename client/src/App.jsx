@@ -5,6 +5,7 @@ import { useState } from "react";
 import JournalEntry from "./Component/JournalEntry/JournalEntry";
 import Home from "./Component/Home/Home";
 import Goals from "./Component/Goalsetting/Goalsetting";
+import SignUp from "./Component/SignUp/SignUp";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Link to="/">Home</Link>
           <Link to="/journal-entry">Journal </Link>
           <Link to="/goals">Goals</Link>
+          <Link to="/signup">SignUp</Link>
         </div>
       </nav>
 
@@ -22,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/journal-entry" element={<JournalEntry />} />
         <Route path="/goals" element={<Goals />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
   );

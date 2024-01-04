@@ -1,49 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import "./Home.scss";
 import { useState } from "react";
+import axios from "axios";
 
 function Home() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [signupName, setSignuptName] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
   return (
-    <div className="container">
-      <form className="container__form">
-        <h1 className="container__header">Sign Up</h1>
-        <label>Name</label>
-        <input
-          value={signupName}
-          onChange={(e) => setSignuptName(e.target.value)}
-          placeholder="write your name..."
-        />
-        <label>Password</label>
-        <input
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="create password..."
-        />
-        <label>Confirm Password</label>
-        <input
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="rewrite password..."
-        />
-        <button
-          onClick={() => {
-            // TODO:handel sign in
-            // navigate("/journal-entry");
-          }}
-        >
-          Sign Up
-        </button>
-      </form>
-      {/* Sign in section */}
-
-      <form className="container__form">
+    <>
+      <div className="container__form">
         <h1 className="container__header">Sign In</h1>
         <label>Name</label>
         <input
@@ -59,15 +26,23 @@ function Home() {
           placeholder="enter password..."
         />
         <button
-          onClick={() => {
-            // TODO:handel sign in
-            navigate("/journal-entry");
+          onClick={async () => {
+            try {
+              await axios.post("http://localhost:8080/sign-in", {
+                name,
+                password,
+              });
+            } catch (error) {
+              console.log(error);
+              setError(error);
+            }
           }}
         >
-          Sign in{" "}
+          Sign in
         </button>
-      </form>
-    </div>
+        <div className="error"> {error?.message}</div>
+      </div>
+    </>
   );
 }
 

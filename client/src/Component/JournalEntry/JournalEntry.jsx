@@ -1,12 +1,61 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./JournalEntry.scss";
-import { useState } from "react";
 
-const moods = ["Sad", "Happy", "Frustrated", "Content", "Calm"];
+const moods = [
+  "Joy",
+  "Sadness",
+  "Anger",
+  "Surprise",
+  "Fear",
+  "Disgust",
+  "Excitement",
+  "Contentment",
+  "Confusion",
+  "Happy",
+  "Anticipation",
+  "Gratitude",
+  "Enthusiasm",
+  "Guilt",
+  "Shame",
+  "Pride",
+  "Love",
+  "Hate",
+  "Hope",
+  "Despair",
+  "Calm",
+  "Anxiety",
+  "Elation",
+  "Boredom",
+  "Loneliness",
+  "Frustration",
+  "Satisfaction",
+  "Embarrassment",
+  "Amusement",
+  "Regret",
+];
 
 function JournalEntry() {
   const [entryText, setEntryText] = useState("");
   const [selectedMood, setSelectedMood] = useState("");
+  const [entries, setEntries] = useState([]);
+  const [journalEntries, setJournalEntries] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchEntries = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/journalentries/"
+        );
+        setJournalEntries(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchEntries();
+  }, []);
 
   const handleInputChange = (e) => {
     setEntryText(e.target.value);
@@ -16,8 +65,69 @@ function JournalEntry() {
     setSelectedMood(e.target.value);
   };
 
-  const handleEntryClick = () => {
-    // TODO: send journal entry and mood to server
+  const handleEntryClick = async () => {
+    try {
+      // Change 'userId'
+
+      const userId = "userId";
+      const postbody = {
+        entryText,
+        mood: selectedMood,
+        userId,
+      };
+      console.log({ postbody });
+
+      const r = await axios.post(
+        "http://localhost:8080/journalentry",
+        postbody
+      );
+      console.log({ r });
+      // Fetch updated entries after saving
+      const response = await axios.get(
+        `http://localhost:8080/journalentries/${userId}`
+      );
+      setEntries(response.data);
+
+      // Clear input fields
+      setEntryText("");
+      setSelectedMood("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleEditClick = async (entryId) => {
+    const editedText = prompt("Edit your entry:", entryText);
+    if (editedText !== null) {
+      try {
+        await axios.put(`http://localhost:8080/journalentries/${entryId}`, {
+          entryText: editedText,
+          mood: selectedMood,
+        });
+
+        const response = await axios.get(
+          `http://localhost:8080/journalentries/${userId}`
+        );
+        setJournalEntries(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const handleDeleteClick = async (entryId) => {
+    if (window.confirm("Are you sure you want to delete this entry?")) {
+      try {
+        await axios.delete(`http://localhost:8080/journalentries/${entryId}`);
+
+        const response = await axios.get(
+          `http://localhost:8080/journalentries/${userId}`
+        );
+        setJournalEntries(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -40,12 +150,27 @@ function JournalEntry() {
         </select>
       </div>
       <textarea
+        className="entry-textarea"
         value={entryText}
         onChange={handleInputChange}
         placeholder="Write your thoughts here..."
         maxLength={1000}
       />
-      <button onClick={handleEntryClick}>Save Entry</button>
+      <button className="save-entry-button" onClick={handleEntryClick}>
+        Save Entry
+      </button>
+
+      {/* Display entries */}
+      <div className="journal__entries">
+        {journalEntries.map((entry) => (
+          <div className="entry" key={entry.id}>
+            <p className="entry-text">{entry.journalentry}</p>
+            <p className="entry-mood">Mood: {entry.mood}</p>
+            <button onClick={() => handleEditClick(entry.id)}>Edit</button>
+            <button onClick={() => handleDeleteClick(entry.id)}>Delete</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

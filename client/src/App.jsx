@@ -1,7 +1,5 @@
 import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
-import { useState } from "react";
-
 import JournalEntry from "./Component/JournalEntry/JournalEntry";
 import Home from "./Component/Home/Home";
 import Goals from "./Component/Goalsetting/Goalsetting";
@@ -13,10 +11,16 @@ function App() {
       <nav>
         <a className="logo">MINDFUL</a>
         <div className="nav__items">
-          <Link to="/">Home</Link>
-          <Link to="/journal-entry">Journal </Link>
-          <Link to="/goals">Goals</Link>
-          <Link to="/signup">SignUp</Link>
+          <div className="nav__pages">
+            <Link to="/">Home</Link>
+            <Link to="/journal-entry">Journal </Link>
+            <Link to="/goals">Goals</Link>
+          </div>
+          <div className="nav__signup">
+            <Link to="/signup" className="nav__items--signup">
+              SignUp
+            </Link>
+          </div>
         </div>
       </nav>
 

@@ -6,12 +6,16 @@ body {
   padding: 0;
   background-image: url("../../assets/Image/cup.jpeg");
   background-size: cover;
+
   background-repeat: no-repeat;
   background-position: 0cqh;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .container {

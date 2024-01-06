@@ -6,12 +6,11 @@ import bcrypt from "bcrypt";
 const db = knex(knexfile);
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 app.get("/", (request, response) => {
   response.send("Home");
 });
-app.post("/journalentry", (request, response) => {});
 
 app.post("/sign-up", async (request, response) => {
   await db("users").insert({
@@ -24,7 +23,7 @@ app.post("/sign-up", async (request, response) => {
 app.post("/sign-in", async (request, response) => {
   console.log(123, request.body);
   // const hashPassword = await bcrypt.hash(request.body.password, 10);
-  // response.send("signed in");
+  response.send("signed in");
   const user = await db("users")
     .where({
       name: request.body.name,
@@ -37,6 +36,38 @@ app.post("/sign-in", async (request, response) => {
     response.status(401).send("user not found");
   } else {
     response.status(200).json(user);
+  }
+});
+app.post("/journalentry", async (request, response) => {
+  const { entryText, mood, userId } = request.body;
+  // response.json({ name: "afnan" });
+  try {
+    const insertedEntry = await db("journal_entries").insert({
+      journalentry: entryText,
+      mood: mood,
+      // user_id: userId,
+      // created_at: new Date(),
+    });
+
+    response.status(201).json({ id: insertedEntry[0] });
+  } catch (error) {
+    console.error(error);
+    response.status(500).send("Internal Server Error");
+  }
+});
+app.get("/journalentries", async (request, response) => {
+  const data = await db("journal_entries");
+  response.json(data);
+});
+
+app.get("/journalentries/:userId", async (request, response) => {
+  const userId = request.params.userId;
+  try {
+    const entries = await db("journal_entries").where("user_id", userId);
+    response.status(200).json(entries);
+  } catch (error) {
+    console.error(error);
+    response.status(500).send("Internal Server Error");
   }
 });
 app.listen(8080, () => {

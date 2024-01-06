@@ -8,7 +8,7 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signuppassword, setSignupPassword] = useState("");
   const [signupName, setSignuptName] = useState("");
-  //   const [error, setError] = useState("");
+  const [error, setError] = useState("");
   return (
     <div className="container">
       <div className="container__form">

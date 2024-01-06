@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import "./Home.scss";
 import { useState } from "react";
 import axios from "axios";
+import "./Home.scss";
 
 function Home() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   return (
     <>

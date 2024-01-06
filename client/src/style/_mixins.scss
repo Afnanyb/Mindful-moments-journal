@@ -1,16 +1,19 @@
-@mixin desktop {
-  @media screen and (min-width: $desktop-breakpoint) {
+//Going from a desktop to mobile design instead of
+//mobile to desktop
+
+@mixin tablet {
+  @media screen and (max-width: $tablet-breakpoint) {
     @content;
   }
 }
 
-@mixin tablet {
-  @media screen and (min-width: $tablet-breakpoint) {
+@mixin mobile {
+  @media screen and (max-width: $mobile-breakpoint) {
     @content;
   }
 }
 
 //Breakpoints
-$mobile-breakpoint: 20rem;
-$tablet-breakpoint: 48rem;
-$desktop-breakpoint: 80rem;
+$mobile-breakpoint: 768px;
+$tablet-breakpoint: 1280px;
+//$desktop-breakpoint: 80rem;

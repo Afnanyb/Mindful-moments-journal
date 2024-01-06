@@ -22,19 +22,48 @@ nav {
   justify-content: left;
   align-items: center;
   font-family: "Avenir";
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .logo {
   color: #f5f5f5;
   justify-content: left;
-  margin: 0 200px 0 1rem;
+  margin: 0 5rem 0 1rem;
   font-weight: bold;
   font-size: 30px;
+
+  @include mobile {
+    justify-content: center;
+    width: 3rem;
+  }
 }
 
 .nav__items {
   display: flex;
   flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &--signup {
+    font-size: 12px;
+    align-items: flex-end;
+    padding-top: 0.5rem;
+  }
+}
+
+.nav__pages {
+  flex-direction: row;
+}
+
+.nav__signup {
+  justify-content: right;
 }
 
 nav a {

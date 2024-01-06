@@ -7,39 +7,20 @@ const moods = [
   "Joy",
   "Sadness",
   "Anger",
-  "Surprise",
   "Fear",
-  "Disgust",
-  "Excitement",
   "Contentment",
-  "Confusion",
   "Happy",
-  "Anticipation",
-  "Gratitude",
-  "Enthusiasm",
   "Guilt",
-  "Shame",
-  "Pride",
-  "Love",
-  "Hate",
-  "Hope",
-  "Despair",
   "Calm",
   "Anxiety",
-  "Elation",
-  "Boredom",
   "Loneliness",
   "Frustration",
-  "Satisfaction",
-  "Embarrassment",
-  "Amusement",
-  "Regret",
+  "Love",
 ];
 
 function JournalEntry() {
   const [entryText, setEntryText] = useState("");
   const [selectedMood, setSelectedMood] = useState("");
-  const [entries, setEntries] = useState([]);
   const [journalEntries, setJournalEntries] = useState([]);
   const navigate = useNavigate();
 
@@ -62,7 +43,7 @@ function JournalEntry() {
   const handleMoodChange = (e) => {
     setSelectedMood(e.target.value);
   };
-
+  // entry function
   const handleEntryClick = async () => {
     try {
       const userId = "userId";
@@ -85,7 +66,7 @@ function JournalEntry() {
       console.log(error);
     }
   };
-
+  // edit function
   const handleEditClick = async (entryId) => {
     const editedText = prompt("Edit your entry:", entryText);
     if (editedText !== null) {
@@ -104,7 +85,7 @@ function JournalEntry() {
       }
     }
   };
-
+  // delete function
   const handleDeleteClick = async (entryId) => {
     if (window.confirm("Are you sure you want to delete this entry?")) {
       try {
@@ -115,7 +96,6 @@ function JournalEntry() {
       }
     }
   };
-
   return (
     <div className="journal__container">
       <div className="journal__mood">

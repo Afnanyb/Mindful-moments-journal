@@ -43,17 +43,15 @@ function JournalEntry() {
   const [journalEntries, setJournalEntries] = useState([]);
   const navigate = useNavigate();
 
+  const fetchEntries = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/journalentries/");
+      setJournalEntries(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const fetchEntries = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/journalentries/"
-        );
-        setJournalEntries(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchEntries();
   }, []);
 
@@ -67,8 +65,6 @@ function JournalEntry() {
 
   const handleEntryClick = async () => {
     try {
-      // Change 'userId'
-
       const userId = "userId";
       const postbody = {
         entryText,
@@ -81,13 +77,7 @@ function JournalEntry() {
         "http://localhost:8080/journalentry",
         postbody
       );
-      console.log({ r });
-      // Fetch updated entries after saving
-      const response = await axios.get(
-        `http://localhost:8080/journalentries/${userId}`
-      );
-      setEntries(response.data);
-
+      await fetchEntries();
       // Clear input fields
       setEntryText("");
       setSelectedMood("");
@@ -119,11 +109,7 @@ function JournalEntry() {
     if (window.confirm("Are you sure you want to delete this entry?")) {
       try {
         await axios.delete(`http://localhost:8080/journalentries/${entryId}`);
-
-        const response = await axios.get(
-          `http://localhost:8080/journalentries/${userId}`
-        );
-        setJournalEntries(response.data);
+        await fetchEntries();
       } catch (error) {
         console.log(error);
       }

@@ -70,6 +70,31 @@ app.get("/journalentries/:userId", async (request, response) => {
     response.status(500).send("Internal Server Error");
   }
 });
+
+app.put("/journalentries/:entryId", async (request, response) => {
+  const entryId = request.params.entryId;
+  const { entryText, mood } = request.body;
+  try {
+    await db("journal_entries")
+      .where("id", entryId)
+      .update({ journalentry: entryText, mood });
+    response.status(200).json({ message: "Entry updated successfully" });
+  } catch (error) {
+    console.error(error);
+    response.status(500).send("Internal Server Error");
+  }
+});
+app.delete("/journalentries/:entryId", async (request, response) => {
+  const entryId = request.params.entryId;
+  try {
+    await db("journal_entries").where("id", entryId).del();
+    response.status(200).json({ message: "Entry deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    response.status(500).send("Internal Server Error");
+  }
+});
+
 app.listen(8080, () => {
   console.log("listning on port 8080");
 });

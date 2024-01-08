@@ -1,5 +1,11 @@
 # Mindful-moments-journal
 
+#App Installation
+Client: npm run dev -w client
+Server: npm run dev -w server
+
+you need to set up a db
+
 ## Overview
 
 Mindful Moments Journal is a web application designed to support mental well-being by providing users with a secure and private platform for daily journaling. The app encourages users to reflect on their thoughts and emotions, track mood patterns, and set personalized goals for self-improvement.

@@ -2,7 +2,8 @@
 @use "./style/typography" as *;
 
 body {
-  font-family: "Avenir";
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   margin: auto;
   padding: 0;
   background-image: url("../../client/src/assets/Image/cup.jpeg");

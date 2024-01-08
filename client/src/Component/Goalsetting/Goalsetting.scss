@@ -1,3 +1,6 @@
+@use "../../style/mixins" as *;
+@use "../../style/typography" as *;
+
 .goals-container {
   max-width: 600px;
   margin: auto;
@@ -6,6 +9,11 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin-top: 100px;
+
+  @include mobile {
+    margin-top: 200px;
+  }
 }
 
 .goals-title {
@@ -17,6 +25,7 @@
 
 .input-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -67,6 +76,7 @@
 
 .remove-goal-btn {
   background-color: orangered;
+  width: 2rem;
   color: #fff;
   padding: 8px 12px;
   border: none;

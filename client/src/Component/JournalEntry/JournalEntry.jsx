@@ -99,13 +99,15 @@ function JournalEntry() {
   return (
     <div className="journal__container">
       <div className="journal__mood">
-        <div className="journal__mood--header">How are you feeling today?</div>
+        <div className="journal__header">How are you feeling today?</div>
         <select
-          className="mood-dropdown"
+          className="journal__dropdown"
           value={selectedMood}
           onChange={handleMoodChange}
+          aria-label="Select your mood"
+          aria-required="true"
         >
-          <option value="" disabled>
+          <option value="selectedMood" disabled>
             Select your mood
           </option>
           {moods.map((mood) => (
@@ -116,24 +118,41 @@ function JournalEntry() {
         </select>
       </div>
       <textarea
-        className="entry-textarea"
+        className="journal__textarea"
         value={entryText}
         onChange={handleInputChange}
         placeholder="Write your thoughts here..."
         maxLength={1000}
+        aria-label="Write your journal entry"
       />
-      <button className="save-entry-button" onClick={handleEntryClick}>
+      <button onClick={handleEntryClick} aria-label="Save Entry">
         Save Entry
       </button>
 
       {/* Display entries */}
-      <div className="journal__entries">
+      <div className="entry">
         {journalEntries.map((entry) => (
-          <div className="entry" key={entry.id}>
-            <p className="entry-text">{entry.journalentry}</p>
-            <p className="entry-mood">Mood: {entry.mood}</p>
-            <button onClick={() => handleEditClick(entry.id)}>Edit</button>
-            <button onClick={() => handleDeleteClick(entry.id)}>Delete</button>
+          <div className="entry__container" key={entry.id}>
+            <div className="entry__header">
+              <p className="entry__mood">Mood: {entry.mood}</p>
+              <div className="entry__buttons">
+                <button
+                  className="edit__buttons"
+                  onClick={() => handleEditClick(entry.id)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="edit__buttons"
+                  onClick={() => handleDeleteClick(entry.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+            <div className="entry__content">
+              <p className="entry__text">{entry.journalentry}</p>
+            </div>
           </div>
         ))}
       </div>

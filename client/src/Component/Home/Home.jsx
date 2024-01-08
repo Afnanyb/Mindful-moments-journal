@@ -13,13 +13,13 @@ function Home() {
     <>
       <div className="container__form">
         <h1 className="container__header">Sign In</h1>
-        <label>Name</label>
+        <label htmlFor="name"> Name</label>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="write your name..."
         />
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input
           value={password}
           type="password"

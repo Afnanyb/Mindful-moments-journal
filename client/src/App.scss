@@ -2,8 +2,23 @@
 @use "./style/typography" as *;
 
 body {
-  margin: 0;
+  font-family: "Avenir";
+  margin: auto;
   padding: 0;
+  background-image: url("../../client/src/assets/Image/cup.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 0cqh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+  background-color: #f8f8f8;
+
+  @include mobile {
+    width: 100%;
+  }
 }
 
 nav {
@@ -14,17 +29,18 @@ nav {
   width: 100%;
   left: 0;
   right: 0;
-  z-index: 100;
+
   background-color: #7fa2a7;
   border-bottom: 2px solid #7fa2a7;
   padding: 18px 0;
-  display: flex;
   justify-content: left;
   align-items: center;
   font-family: "Avenir";
 
   @include mobile {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -49,20 +65,34 @@ nav {
 
   @include mobile {
     flex-direction: column;
+    justify-content: center;
+    width: 200px;
   }
 
   &--signup {
     font-size: 12px;
     align-items: flex-end;
     padding-top: 0.5rem;
+    @include mobile {
+      margin-left: 3rem;
+    }
   }
 }
 
 .nav__pages {
   flex-direction: row;
+  width: 300px;
+
+  &--style {
+    @include mobile {
+      margin-left: 0;
+      padding: 0;
+    }
+  }
 }
 
 .nav__signup {
+  flex-direction: row;
   justify-content: right;
 }
 

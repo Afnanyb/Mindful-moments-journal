@@ -77,7 +77,7 @@ function JournalEntry() {
         });
 
         const response = await axios.get(
-          `http://localhost:8080/journalentries/${userId}`
+          `http://localhost:8080/journalentries/`
         );
         setJournalEntries(response.data);
       } catch (error) {

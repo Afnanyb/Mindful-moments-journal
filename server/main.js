@@ -51,7 +51,6 @@ app.post("/journalentry", async (request, response) => {
     response.status(201).json({ id: insertedEntry[0] });
   } catch (error) {
     console.error(error);
-    response.status(500).send("Internal Server Error");
   }
 });
 app.get("/journalentries", async (request, response) => {
@@ -66,7 +65,6 @@ app.get("/journalentries/:userId", async (request, response) => {
     response.status(200).json(entries);
   } catch (error) {
     console.error(error);
-    response.status(500).send("Internal Server Error");
   }
 });
 
@@ -74,13 +72,13 @@ app.put("/journalentries/:entryId", async (request, response) => {
   const entryId = request.params.entryId;
   const { entryText, mood } = request.body;
   try {
+    console.log(entryText, mood);
     await db("journal_entries")
       .where("id", entryId)
       .update({ journalentry: entryText, mood });
     response.status(200).json({ message: "Entry updated successfully" });
   } catch (error) {
     console.error(error);
-    response.status(500).send("Internal Server Error");
   }
 });
 app.delete("/journalentries/:entryId", async (request, response) => {
